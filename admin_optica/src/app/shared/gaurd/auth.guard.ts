@@ -33,12 +33,12 @@ export class AuthGuard implements CanActivate {
       
       //validation token exist
       //if (!this.auth.token || !this.auth.user){
-      if(!localStorage.getItem("token") && !localStorage.getItem("user")){
+      if(!localStorage.getItem("token") || !localStorage.getItem("user")){ //&&
       this.router.navigate([routes.login]);
         return false
       }
 
-      let token:any = localStorage.getItem("token");
+      let token:any = localStorage.getItem("token"); 
       //console.log(token);
       let expiration = (JSON.parse(atob(token.split(".")[1]))).exp;
       //validation token duration

@@ -37,7 +37,7 @@ export class AuthService {
   login(email:string,password:string) {
     //localStorage.setItem('authenticated', 'true');
     //this.router.navigate([routes.adminDashboard]);
-    let URL = URL_SERVICIOS+"auth/login";
+    let URL = URL_SERVICIOS+"/auth/login";
     return this.http.post(URL,{email: email,password: password}).pipe(
       map((auth:any)=>{
         console.log(auth);
@@ -50,6 +50,7 @@ export class AuthService {
       })
       );
   }
+  
   saveLocalStorage(auth:any){
     if(auth && auth.access_token){
       localStorage.setItem("token", auth.access_token);
@@ -63,7 +64,7 @@ export class AuthService {
   logout(){
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    this.router.navigate([routes.login]);
     localStorage.removeItem('authenticated');
+    this.router.navigate([routes.login]);
   }
 }

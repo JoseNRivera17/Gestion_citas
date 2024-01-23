@@ -15,6 +15,7 @@ export class HeaderComponent {
   public miniSidebar  = false;
   public addClass = false;
   public user:any;
+
   constructor(public router: Router,private sideBar: SideBarService, public auth: AuthService) {
     this.sideBar.toggleSideBar.subscribe((res: string) => {
       if (res == 'true') {
@@ -23,6 +24,7 @@ export class HeaderComponent {
         this.miniSidebar = false;
       }
     });
+    //this.user= this.auth.user;
     //USERNAME in Admin
     let USER = localStorage.getItem("user");
     this.user= JSON.parse(USER ? USER : '');
